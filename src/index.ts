@@ -11,10 +11,20 @@ const io = new socketio.Server(httpServer);
 app.use(express.static(path.resolve(__dirname, '../', 'public')));
 
 io.on('connection', (socket) => {
-    console.log(`login: ${socket.id}`);
+    console.log(`connect: ${socket.id}`);
+    socket.emit('connection', 'connect');
+
+    socket.on("ping", (cb) => {
+        console.log("ping", Date.now());
+        cb();
+    });
+
+    socket.on("disconnect", () => {
+        console.log(`disconnect ${socket.id}`);
+    });
 
     socket.on('message', message => {
-        socket.emit('serverpong', `pong => ${message}`);
+        socket.emit('pong', `pong => ${message}`);
 
         switch (message) {
             case 'dial':
@@ -28,7 +38,9 @@ io.on('connection', (socket) => {
     })
 }) 
 
-httpServer.listen(3333);
+httpServer.listen(3333, () => {
+    console.log('Open browser on http://localhost:3333');
+});
 
 
 
