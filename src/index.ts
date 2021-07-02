@@ -11,8 +11,8 @@ const io = new socketio.Server(httpServer);
 app.use(express.static(path.resolve(__dirname, '../', 'public')));
 
 io.on('connection', (socket) => {
-    console.log(`connect: ${socket.id}`);
-    socket.emit('connection', 'connect');
+    console.log(`connected: ${socket.id}`);
+    socket.emit('connected', 'connected');
 
     socket.on("ping", (cb) => {
         console.log("ping", Date.now());
