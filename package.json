@@ -12,9 +12,7 @@
   },
   "scripts": {
     "start": "yarn ts-node-dev ./src/index.ts",
-    "build": "tsc",
-    "start:server": "ts-node server.ts",
-    "start:client": "ts-node client.ts"
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/express": "^4.17.12",
