@@ -33,7 +33,7 @@ yarn install
 yarn start
 ```
 
-### standalone
+### standalone (coming soon...)
 
 ```js
 const io = require('socket.io')();
